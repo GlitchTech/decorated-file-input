@@ -1,5 +1,5 @@
 enyo.kind({
-	name: "onyx.custom.FileInput",
+	name: "jmtk.FileInput",
 	style: "padding: 5px;",
 	
 	events: {
