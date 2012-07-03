@@ -4,8 +4,8 @@ Enyo 2.0 Decorated-File-Input
 An Enyo 2 Decorator for the &lt;input type="file"> HTML element, also known in Enyo 2 as {kind:"enyo.Input", type:"file"}
 
 ###Published Properties###
-`    
-published: {
+    
+`published: {
     // The content of the button
     buttonCaption: "Choose File",
 
