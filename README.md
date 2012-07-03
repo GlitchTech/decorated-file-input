@@ -3,6 +3,9 @@ Enyo 2.0 Decorated-File-Input
 
 An Enyo 2 Decorator for the &lt;input type="file"> HTML element, also known in Enyo 2 as {kind:"enyo.Input", type:"file"}
 
+For a demo of the Decorated File Input, visit <a href="cs.clemson.edu/~tkimmet/JMTK?page=fileInput">this page</a>.
+
+<b>NOTICE: this component does no server communication internally. For a complete usage and implementation guide, see below.</b>
 ###Published Properties###
     
 ```
