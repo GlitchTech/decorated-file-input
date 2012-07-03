@@ -75,6 +75,7 @@ components: [
 ```
 
 * Create the `onFileSelected` event handler. In this case we call it 'uploadFile' and it will attempt to upload the selected file to the server.
+
 ```
 uploadFile: function( inSender, inEvent ) {
 	this.log("File name: " + inEvent.fileName);
@@ -103,11 +104,12 @@ uploadFile: function( inSender, inEvent ) {
 }
 ```
 
-* Then your `serverResponse` function can do whatever you like. Here is a simpe example:
+* Then your `serverResponse` function can do whatever you like. Here is a simple example:
+
 ```
 serverResponse: function( xhr ) {
-	if ( xhr.status == 200 && xhr.readyState == 4 ) {
-		alert("The file was uploaded!");
-	}
+    if ( xhr.status == 200 && xhr.readyState == 4 ) {
+    	alert("The file was uploaded!");
+    }
 }
 ```
