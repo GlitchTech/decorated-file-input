@@ -5,7 +5,9 @@ An Enyo 2 Decorator for the &lt;input type="file"> HTML element, also known in E
 
 ###Published Properties###
     
-`published: {
+`
+
+published: {
     // The content of the button
     buttonCaption: "Choose File",
 
@@ -26,7 +28,9 @@ An Enyo 2 Decorator for the &lt;input type="file"> HTML element, also known in E
     
 	// The text shown next to the button when no file is chosen
     placeholder: "No file chosen"
-},`
+},
+
+`
 
 ###Functions###
 // Basically emulates clicking the 'Choose File' button. May or may not need this.
