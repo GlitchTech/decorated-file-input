@@ -45,16 +45,66 @@ getFiles()
 clearFiles()
 ```
 
+###Events###
+```
+events: {
+	// Event that is bubbled up when the user chooses a file.
+	// You can access the short name of the selected file like so: inEvent.fileName
+	// NOTE: this is not the full path, but only something like 'myFile.txt'. Use as you wish.
+	onFileSelected: ""
+}
+```
+
 ###Usage###
 
 Using the custom File Input is straightforward:
 
-1. Include it in your components
+* Include it in your components, be sure to hook into the `onFileSelected` event.
 
 ```
 components: [
-    ...,
-    {kind: "jmtk.FileInput", name: "fileInput"},
-	...
+    {...},
+    // In this example we will POST to the server immediately
+    // after the user chooses a file
+    {kind: "jmtk.FileInput", name: "fileInput", onFileSelected: "uploadFile"}
+	{...}
 ]
+```
+
+* Create the `onFileSelected` event handler. In this case we call it 'uploadFile' and it will attempt to upload the selected file to the server.
+```
+uploadFile: function( inSender, inEvent ) {
+	this.log("File name: " + inEvent.fileName);
+	// This is a JavaScript abstraction of an HTML <form>. This makes posting data to a PHP page very easy
+	var form = new FormData();
+
+	// Simply attach the selected file to the FormData like so.
+	// The name you choose here is how you will access the File from PHP.
+	// E.g. <?php $file = $_POST['uploadedFile']; ?>
+	// Also remember to access the File from the FileInput using Array notation
+	form.append('uploadedFile', this.$.fileInput.getFiles()[0]);
+	
+	// Now we start the request
+	var xhr = new XMLHttpRequest();
+	// Setup the response handler for the XHR using Enyo's binding function.
+	// Remember to pass along the XHR
+	xhr.onreadystatechange = enyo.bind( this, "serverResponse", xhr );
+	
+	// Open the request for communication with the server
+	// POST means we are sending data. 'yourPhpFile.php' is where the server handles the uploaded file.
+	// And true means do not make the browser wait on the request
+	xhr.open("POST", "yourPhpFile.php", true);
+	
+	// Send!
+	xhr.send( form );
+}
+```
+
+* Then your `serverResponse` function can do whatever you like. Here is a simpe example:
+```
+serverResponse: function( xhr ) {
+	if ( xhr.status == 200 && xhr.readyState == 4 ) {
+		alert("The file was uploaded!");
+	}
+}
 ```
