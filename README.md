@@ -8,18 +8,23 @@ An Enyo 2 Decorator for the &lt;input type="file"> HTML element, also known in E
 published: {
     // The content of the button
     buttonCaption: "Choose File",
+
     // The content of the upload note
     uploadNote: "",
-    // The style of the upload note
+
+	// The style of the upload note
     uploadNoteStyle: "font-weight: bold; font-size: 18px",
-    // The CSS class of the upload note (may be overkill but oh well!)
+    
+	// The CSS class of the upload note (may be overkill but oh well!)
     uploadNoteClass: "",
-    // This is the name of the <input> HtmlElement and thus the
+    
+	// This is the name of the <input> HtmlElement and thus the
     // $_POST[] key in your PHP script. Set this if you want
     // to wrap your Enyo generated HTML in a <form> for convenience or less JS-oriented web programming.
     // NOTE: if you use FormData as described below, this property is unnecessary
     inputElementName: "",
-    // The text shown next to the button when no file is chosen
+    
+	// The text shown next to the button when no file is chosen
     placeholder: "No file chosen"
 },`
 
