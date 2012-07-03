@@ -33,15 +33,15 @@ published: {
 
 ###Functions###
 // Basically emulates clicking the 'Choose File' button. May or may not need this.
-`triggerUpload()`
+```triggerUpload()```
 
 // Returns an array of File objects. Returns empty array if no file selected.
 // Use this for form validation and for posting to upload, as shown later
-`getFiles()`
+```getFiles()```
 
 // Clears the File objects from the <input>'s File array. Undoes any file choosing
 // performed by the user
-`clearFiles()`
+```clearFiles()```
 
 ###Usage###
 
