@@ -52,4 +52,6 @@ Using the custom File Input is straightforward:
 
 `components: [
     ...,
-    {kind: "jmtk.FileInput", name: "fileInput"
+    {kind: "jmtk.FileInput", name: "fileInput"},
+	...
+]`
