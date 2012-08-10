@@ -29,7 +29,10 @@ published: {
     inputElementName: "",
     
 	// The text shown next to the button when no file is chosen
-    placeholder: "No file chosen"
+    placeholder: "No file chosen",
+    
+    // Determines whether or not multiple files can be selected for upload
+    multiple: false
 },
 
 ```
