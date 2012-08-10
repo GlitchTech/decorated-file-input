@@ -1,6 +1,6 @@
 enyo.kind({
 	name: "jmtk.FileInput",
-	style: "padding: 5px;",
+	style: "padding: 5px; text-align: left;",
 	
 	events: {
 		onFileSelected: ""
@@ -12,11 +12,12 @@ enyo.kind({
 		uploadNoteStyle: "font-weight: bold; font-size: 18px",
 		uploadNoteClass: "",
 		inputElementName: "",
-		placeholder: "No file chosen"
+		placeholder: "No file chosen",
+		multiple: false
 	},
 
+
 	components: [
-		{kind: "enyo.Input", name: "fileInput", type: "file", style: "position: absolute; visibility: hidden;", onchange: "fileSelected"},	
 		{
 			kind:"enyo.ToolDecorator",
 			components: [
@@ -27,7 +28,8 @@ enyo.kind({
 				{name: "fileName", content: ""}
 			]
 		},
-		{name: "uploadNote", content: ""}
+		{name: "uploadNote", content: "", style: "margin-left: 3px;"},
+		{kind: "enyo.Input", name: "fileInput", type: "file", style: "position: absolute; visibility: hidden;", onchange: "fileSelected"}
 	],
 
 	create: function() {
@@ -38,6 +40,7 @@ enyo.kind({
 		this.uploadNoteClassChanged();
 		this.inputElementNameChanged();
 		this.placeholderChanged();
+		this.multipleChanged();
 	},
 
 	triggerUpload: function() {
@@ -56,9 +59,10 @@ enyo.kind({
 		return files;
 	},
 
-	clearFile: function() {
-		this.$.fileInput.setValue("");
-		this.fileSelected( this.$.fileInput );
+	clearFiles: function() {
+		this.$.fileInput.destroy();
+		this.createComponent({kind: "enyo.Input", name: "fileInput", type: "file", style: "position: absolute; visibility: hidden;", onchange: "fileSelected"}).render();
+		this.$.fileName.setContent(this.placeholder);
 	},
 	
 	//* @protected
@@ -67,6 +71,9 @@ enyo.kind({
 		if ( !fileName.length ) {
 			this.$.fileName.setContent(this.placeholder);
 			fileName = null;
+		}
+		else if ( this.getFiles().length > 1 ) {
+			this.$.fileName.setContent("[Multiple files selected]");
 		}
 		else {
 			this.$.fileName.setContent(fileName);
@@ -99,6 +106,10 @@ enyo.kind({
 		if ( !inOldValue || this.$.fileName.getContent() == inOldValue ) {
 			this.$.fileName.setContent( this.placeholder );
 		}
+	},
+
+	multipleChanged: function() {
+		this.$.fileInput.setAttribute("multiple", (this.multiple ? "multiple" : null));
 	}
 
 });
